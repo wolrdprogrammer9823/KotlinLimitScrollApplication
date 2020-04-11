@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_light"
     tools:context=".fragments.Tab4Fragment">
 
-    <TextView
-        android:id="@+id/tab4_tv"
+    <com.heng.kotlinlimitscrollapplication.views.ExpandCircleView
+        android:id="@+id/expanded_cv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
-</FrameLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
