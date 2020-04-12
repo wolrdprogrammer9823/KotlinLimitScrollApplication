@@ -13,15 +13,15 @@ const val expand_radius_message = 0x10
 
 class ExpandCircleView : View {
 
-    var viewWidth = 0
-    var viewHeight = 0
-    var maxRadius = 0
-    var startRadius = 0F
-    var originalRadius = 0F
+    private var viewWidth = 0
+    private var viewHeight = 0
+    private var circleRadius = 0F
+    private var maxRadius = 0
+    private var startRadius = 0F
+    private var originalRadius = 0F
 
-    var paint: Paint? = null
-    var circleCanvas : Canvas? = null
-    var handler : ViewHandler? = null
+    private var paint: Paint? = null
+    private var handler : ViewHandler? = null
 
     constructor(context: Context) : super(context){
         init()
@@ -41,26 +41,24 @@ class ExpandCircleView : View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         viewWidth = MeasureSpec.getSize(widthMeasureSpec)
         viewHeight = MeasureSpec.getSize(heightMeasureSpec)
+
+        circleRadius = if (ScreenUtils.screenIsPortrait(context)){
+            viewWidth.div(4).toFloat()
+        } else{
+            viewHeight.div(4).toFloat()
+        }
+        startRadius = circleRadius
+        originalRadius = circleRadius
+        maxRadius = circleRadius.toInt().plus(50)
     }
 
     override fun onDraw(canvas: Canvas?) {
 
         super.onDraw(canvas)
-        circleCanvas = canvas
-
-        val radius = if (ScreenUtils.screenIsPortrait(context)){
-            viewWidth.div(4).toFloat()
-        } else{
-            viewHeight.div(4).toFloat()
-        }
-        startRadius = radius
-        originalRadius = radius
-        maxRadius = radius.toInt().plus(50)
 
         val cx = viewWidth.div(2).toFloat()
         val cy = viewHeight.div(2).toFloat()
-        canvas?.drawCircle(cx, cy, radius, paint!!)
-
+        canvas?.drawCircle(cx, cy, circleRadius, paint!!)
         canvas?.drawCircle(cx, cy, startRadius, paint!!)
     }
 
@@ -74,18 +72,14 @@ class ExpandCircleView : View {
         paint?.style = Paint.Style.STROKE
 
         handler = ViewHandler()
-        //expandCircleRadius()
     }
 
-    private fun expandCircleRadius() {
+    fun stopExpand() {
+        handler?.removeMessages(expand_radius_message)
+    }
+
+    fun resumeExpand() {
         handler?.sendEmptyMessageDelayed(expand_radius_message,1000L)
-    }
-
-    private fun drawExpandCircle(canvas: Canvas?) {
-        val cx = viewWidth.div(2).toFloat()
-        val cy = viewHeight.div(2).toFloat()
-        canvas?.drawCircle(cx, cy, startRadius, paint!!)
-        invalidate()
     }
 
     inner class ViewHandler : Handler() {
@@ -93,14 +87,15 @@ class ExpandCircleView : View {
             super.handleMessage(msg)
             when (msg?.what) {
                 expand_radius_message->{
-                    startRadius = startRadius.plus(2)
+                    startRadius = startRadius.plus(5)
                     if (startRadius.toInt() > maxRadius) {
                         startRadius = originalRadius
                     }
-                    //drawExpandCircle(circleCanvas)
-                    //expandCircleRadius()
+                    invalidate()
+                    resumeExpand()
                 } else->{}
             }
         }
     }
+
 }

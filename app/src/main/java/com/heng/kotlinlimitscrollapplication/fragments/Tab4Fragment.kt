@@ -1,9 +1,5 @@
 package com.heng.kotlinlimitscrollapplication.fragments
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.heng.kotlinlimitscrollapplication.R
 import kotlinx.android.synthetic.main.fragment_tab4.*
 
@@ -35,4 +31,14 @@ class Tab4Fragment : BaseLazyLoadFragment() {
     }
 
     override fun getLayoutRes(): Int = R.layout.fragment_tab4
+
+    override fun onFragmentResume() {
+        super.onFragmentResume()
+        expanded_cv.resumeExpand()
+    }
+
+    override fun onFragmentPause() {
+        super.onFragmentPause()
+        expanded_cv.stopExpand()
+    }
 }
