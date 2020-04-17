@@ -10,5 +10,12 @@
     <com.heng.kotlinlimitscrollapplication.views.ExpandCircleView
         android:id="@+id/expanded_cv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:visibility="visible" />
+
+    <com.heng.kotlinlimitscrollapplication.views.TestPorterDuffModeView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
 </androidx.appcompat.widget.LinearLayoutCompat>

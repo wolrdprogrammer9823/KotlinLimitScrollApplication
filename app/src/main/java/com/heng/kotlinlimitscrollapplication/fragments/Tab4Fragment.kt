@@ -34,7 +34,8 @@ class Tab4Fragment : BaseLazyLoadFragment() {
 
     override fun onFragmentResume() {
         super.onFragmentResume()
-        expanded_cv.resumeExpand()
+        //expanded_cv.resumeExpand()
+        //expanded_cv.startAnimation()
     }
 
     override fun onFragmentPause() {
