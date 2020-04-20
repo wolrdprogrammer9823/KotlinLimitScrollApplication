@@ -1,0 +1,3 @@
+1.git revert commitId
+  删除某一次提交  待删除某一提交的所有文件后，需要commit  pull push操作之后，本地和远程分支都完成删除
+  某一提交的所有文件
