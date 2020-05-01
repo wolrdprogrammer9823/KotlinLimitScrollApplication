@@ -1,9 +1,14 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
     <dimen name="dp_45">45dp</dimen>
     <dimen name="dp_60">60dp</dimen>
     <dimen name="dp_80">80dp</dimen>
+    <dimen name="dp_100">100dp</dimen>
+    <dimen name="dp_200">200dp</dimen>
+    <dimen name="dp_245">245dp</dimen>
+    <dimen name="dp_400">400dp</dimen>
 
 
     <dimen name="sp_15">15sp</dimen>

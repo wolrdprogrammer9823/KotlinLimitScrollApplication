@@ -2,6 +2,7 @@ package com.heng.kotlinlimitscrollapplication
 import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
+import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.Fragment
@@ -15,13 +16,11 @@ import com.heng.kotlinlimitscrollapplication.fragments.Tab3Fragment
 import com.heng.kotlinlimitscrollapplication.fragments.Tab4Fragment
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : BaseActivity() {
+open class MainActivity : BaseActivity() {
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            window.navigationBarColor = resources.getColor(android.R.color.black)
-        }
+        setNavigationBarBgColor()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,5 +55,15 @@ class MainActivity : BaseActivity() {
 
     override fun statusBarColor(): Int {
         return super.statusBarColor()
+    }
+
+    open fun setNavigationBarBgColor() {
+        setNavigationBarBgColor(android.R.color.black)
+    }
+
+    open fun setNavigationBarBgColor(@ColorRes colorRes: Int) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            window.navigationBarColor = resources.getColor(colorRes)
+        }
     }
 }
