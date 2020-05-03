@@ -1,9 +1,11 @@
 package com.heng.kotlinlimitscrollapplication.fragments
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.heng.kotlinlimitscrollapplication.R
+import com.heng.kotlinlimitscrollapplication.RecyclerViewIndexActivity
 import com.heng.kotlinlimitscrollapplication.adpater.Tab2Adapter
 import com.heng.kotlinlimitscrollapplication.interfaces.IOnItemClickListener
 import com.heng.kotlinlimitscrollapplication.presenter.GetDataPresenterImpl
@@ -73,6 +75,8 @@ class Tab2Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
     }
 
     override fun onItemClick(view: View, position: Int, content: String) {
-        Toast.makeText(requireContext(), content, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(requireContext(), content, Toast.LENGTH_SHORT).show()
+        val intent = Intent(requireContext(), RecyclerViewIndexActivity::class.java)
+        startActivity(intent)
     }
 }

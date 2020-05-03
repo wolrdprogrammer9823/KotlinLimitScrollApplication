@@ -1,2 +1,3 @@
 rootProject.name='KotlinLimitScrollApplication'
 include ':app'
+include ':swipebacklayout'

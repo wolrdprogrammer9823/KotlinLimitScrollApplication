@@ -70,6 +70,7 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
 
 
         //https://github.com/bingoogolapple/BGASwipeBackLayout-Android  滑动返回上一activity
+        //aop  事件点击
     }
 
     override fun onFragmentResume() {

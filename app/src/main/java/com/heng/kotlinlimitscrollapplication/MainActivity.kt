@@ -18,11 +18,6 @@ import kotlinx.android.synthetic.main.content_main.*
 
 open class MainActivity : BaseActivity() {
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        setNavigationBarBgColor()
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -55,15 +50,5 @@ open class MainActivity : BaseActivity() {
 
     override fun statusBarColor(): Int {
         return super.statusBarColor()
-    }
-
-    open fun setNavigationBarBgColor() {
-        setNavigationBarBgColor(android.R.color.black)
-    }
-
-    open fun setNavigationBarBgColor(@ColorRes colorRes: Int) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            window.navigationBarColor = resources.getColor(colorRes)
-        }
     }
 }
