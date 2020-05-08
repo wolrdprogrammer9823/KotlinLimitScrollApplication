@@ -15,4 +15,6 @@
     <string name="sure">确定</string>
     <string name="cancel">取消</string>
     <string name="title_activity_recycler_view_index">RecyclerViewIndexActivity</string>
+    <string name="tip_txt">A</string>
+    <string name="rv_index_title">测试RecyclerView</string>
 </resources>

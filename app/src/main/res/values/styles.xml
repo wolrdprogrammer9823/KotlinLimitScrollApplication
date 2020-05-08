@@ -29,4 +29,22 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
+
+    <style name="KToolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@color/status_bar_color</item>
+        <item name="android:theme">@android:style/ThemeOverlay.Material.Dark.ActionBar</item>
+        <item name="popupTheme">@android:style/ThemeOverlay.Material.Light</item>
+    </style>
+
+    <style name="KMatchMatch">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="KMatchWrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>

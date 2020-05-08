@@ -3,4 +3,11 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#F44336</color>
+
+    <color name="txt_pressed_color">#00ae7d</color>
+    <color name="txt_normal_color">#00ce7d</color>
+    <color name="status_bar_color">#ffff8800</color>
+    <color name="rv_item_txt_color">#949494</color>
+    <color name="rv_item_s_bg_color">#EFEFEF</color>
+    <color name="rv_item_n_bg_color">#FFFFFF</color>
 </resources>

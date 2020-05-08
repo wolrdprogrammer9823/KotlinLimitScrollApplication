@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".RecyclerViewIndexActivity">
 
-    <Button
-        android:id="@+id/btn_go"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_60"
-        android:text="@string/sure"/>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/rv_toolbar"
+        style="@style/KToolbar"/>
+
+    <FrameLayout
+        style="@style/MatchMatch">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_rv_data"
+            style="@style/KMatchMatch"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/rv_tip_tv"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/tip_tv_background"
+            android:textColor="@android:color/white"
+            tools:text="@string/tip_txt"
+            android:textSize="@dimen/sp_25"
+            tools:visibility="visible"
+            android:visibility="gone"/>
+
+        <com.heng.kotlinlimitscrollapplication.widget.IndexView
+            android:id="@+id/rv_index_view"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="match_parent"
+            android:layout_gravity="end|center"
+            android:background="@android:color/transparent"/>
+    </FrameLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
