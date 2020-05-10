@@ -6,12 +6,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.LinearLayoutCompat
 import cn.bingoogolapple.baseadapter.BGADivider
-import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener
 import cn.bingoogolapple.baseadapter.BGAOnRVItemClickListener
 import cn.bingoogolapple.baseadapter.BGARVVerticalScrollHelper
 import com.heng.kotlinlimitscrollapplication.adpater.RecyclerViewIndexAdapter
 import com.heng.kotlinlimitscrollapplication.util.DataSetUtil
-import com.heng.kotlinlimitscrollapplication.util.doLog
 import com.heng.kotlinlimitscrollapplication.widget.IndexView
 import kotlinx.android.synthetic.main.activity_recycler_view_index.*
 

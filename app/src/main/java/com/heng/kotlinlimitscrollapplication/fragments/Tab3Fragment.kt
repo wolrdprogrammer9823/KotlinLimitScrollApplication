@@ -1,5 +1,6 @@
 package com.heng.kotlinlimitscrollapplication.fragments
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.heng.kotlinlimitscrollapplication.R
+import com.heng.kotlinlimitscrollapplication.TestAopActivity
 import com.heng.kotlinlimitscrollapplication.adpater.Tab3Adapter
 import com.heng.kotlinlimitscrollapplication.interfaces.IOnItemClickListener
 import com.heng.kotlinlimitscrollapplication.presenter.GetDataPresenterImpl
@@ -71,6 +73,9 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
 
         //https://github.com/bingoogolapple/BGASwipeBackLayout-Android  滑动返回上一activity
         //aop  事件点击
+
+        //ActivityStarter 启动activity
+        //熟练掌握 gradle_plugin_android_aspectjx
     }
 
     override fun onFragmentResume() {
@@ -86,17 +91,21 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
     }
 
     override fun onItemClick(view: View, position: Int, content: String) {
-        val dialog = AlertDialog.Builder(requireContext())
-            .setMessage(content)
-            .setPositiveButton(R.string.sure, DialogInterface.OnClickListener{ dialog, _ ->
-                rvAdapter?.deleteItem(position)
-                dialog.dismiss()
-            })
-            .setNegativeButton(R.string.cancel, DialogInterface.OnClickListener{ dialog, _ ->
-                dialog.dismiss()
-            })
-        dialog.create().show()
-        doLog("onItemClick")
+
+//        val dialog = AlertDialog.Builder(requireContext())
+//            .setMessage(content)
+//            .setPositiveButton(R.string.sure, DialogInterface.OnClickListener{ dialog, _ ->
+//                rvAdapter?.deleteItem(position)
+//                dialog.dismiss()
+//            })
+//            .setNegativeButton(R.string.cancel, DialogInterface.OnClickListener{ dialog, _ ->
+//                dialog.dismiss()
+//            })
+//        dialog.create().show()
+//        doLog("onItemClick")
+
+        val mIntent = Intent(requireContext(), TestAopActivity::class.java)
+        startActivity(mIntent)
     }
 
     class RvScrollListener(layoutManager: StaggeredGridLayoutManager) :
