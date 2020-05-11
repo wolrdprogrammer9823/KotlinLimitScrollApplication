@@ -25,6 +25,7 @@ class TestAopActivity : BaseActivity() {
             //checkLoginAspect?.mIsLogin = aop_value_et.text?.trim()?.equals("1")!!
             //success()
             aopClickEvent()
+            //singleClickEvent()
         }
     }
 
@@ -40,8 +41,12 @@ class TestAopActivity : BaseActivity() {
         Toast.makeText(this,"跳转成功!!!",Toast.LENGTH_SHORT).show()
     }
 
-    @SingleClick(2000)
+    @AopClickEvent(1000)
     private fun aopClickEvent() {
         doLog("test_aop.setOnClickListener")
+    }
+
+    private fun singleClickEvent() {
+        doLog("test_aop.SingleClickAspect")
     }
 }

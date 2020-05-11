@@ -76,6 +76,7 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
 
         //ActivityStarter 启动activity
         //熟练掌握 gradle_plugin_android_aspectjx
+        //ViewPager2  DialogFragment
     }
 
     override fun onFragmentResume() {

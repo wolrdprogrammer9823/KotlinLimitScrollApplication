@@ -21,7 +21,7 @@ class ClickEventAspect {
         val methodSignature = joinPoint.signature as MethodSignature
         //获取方法
         val method = methodSignature.method
-        if (!method.isAnnotationPresent(AopClickEvent::class.java)) {
+        if (method != null && !method.isAnnotationPresent(AopClickEvent::class.java)) {
             return
         }
 

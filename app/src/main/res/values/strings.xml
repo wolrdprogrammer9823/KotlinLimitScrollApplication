@@ -17,4 +17,6 @@
     <string name="title_activity_recycler_view_index">RecyclerViewIndexActivity</string>
     <string name="tip_txt">A</string>
     <string name="rv_index_title">测试RecyclerView</string>
+
+    <string name="single_click_key">single_click_key</string>
 </resources>
