@@ -1,4 +1,5 @@
 package com.heng.kotlinlimitscrollapplication.fragments
+import activitystarter.ActivityStarter
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -7,9 +8,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.heng.kotlinlimitscrollapplication.DrawerActivityStarter
 import com.heng.kotlinlimitscrollapplication.R
 import com.heng.kotlinlimitscrollapplication.TestAopActivity
+import com.heng.kotlinlimitscrollapplication.TestAopActivityStarter
 import com.heng.kotlinlimitscrollapplication.adpater.Tab3Adapter
+import com.heng.kotlinlimitscrollapplication.bean.Student
 import com.heng.kotlinlimitscrollapplication.interfaces.IOnItemClickListener
 import com.heng.kotlinlimitscrollapplication.presenter.GetDataPresenterImpl
 import com.heng.kotlinlimitscrollapplication.presenter.IGetDataPresenter
@@ -38,6 +42,11 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
                     putString(ARG_PARAM2, param2)
                 }
             }
+
+        const val name = "疾风剑豪"
+        const val phone = "15238954026"
+
+        val student = Student("1121","green","七年级")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +55,11 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        ActivityStarter.fill(this, outState)
     }
 
     override fun getLayoutRes(): Int = R.layout.fragment_tab3
@@ -76,6 +90,9 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
 
         //ActivityStarter 启动activity
         //熟练掌握 gradle_plugin_android_aspectjx
+        // 通用场景:日志输出、方法计时、异步操作、异常拦截、动态权限
+        // 业务场景:登录验证和单次点击
+
         //ViewPager2  DialogFragment
     }
 
@@ -105,19 +122,31 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
 //        dialog.create().show()
 //        doLog("onItemClick")
 
-        val mIntent = Intent(requireContext(), TestAopActivity::class.java)
-        startActivity(mIntent)
+        when(position) {
+            1->{
+                TestAopActivityStarter.start(requireActivity(), name, phone)
+            }
+
+            2->{
+
+                DrawerActivityStarter.start(requireActivity(), student)
+            }
+
+            2->{
+
+
+            }
+        }
     }
 
     class RvScrollListener(layoutManager: StaggeredGridLayoutManager) :
         RecyclerView.OnScrollListener() {
-
         private var layoutManager: StaggeredGridLayoutManager? = layoutManager
-
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
             /*防止第一行有空白*/
             layoutManager?.invalidateSpanAssignments()
         }
     }
+
 }

@@ -1,7 +1,9 @@
 package com.heng.kotlinlimitscrollapplication
+import activitystarter.ActivityStarter
 import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.View
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +29,9 @@ abstract class BaseActivity : AppCompatActivity(),BGASwipeBackHelper.Delegate,Vi
         initSwipeBackFinish()
 
         super.onCreate(savedInstanceState)
+
+        /*使用ActivityStarter*/
+        ActivityStarter.fill(this, savedInstanceState)
 
         /*适配沉浸式状态栏*/
         StatusBarUtil.setRootViewFitsSystemWindows(this, true)
@@ -54,6 +59,12 @@ abstract class BaseActivity : AppCompatActivity(),BGASwipeBackHelper.Delegate,Vi
             }
         } )
 
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        /*使用ActivityStarter*/
+        ActivityStarter.fill(this, outState)
     }
 
     /*支持滑动返回*/
