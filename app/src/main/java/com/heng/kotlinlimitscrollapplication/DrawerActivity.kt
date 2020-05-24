@@ -16,6 +16,8 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.viewpager2.widget.ViewPager2
+import com.heng.kotlinlimitscrollapplication.adpater.VP2Adapter
 import com.heng.kotlinlimitscrollapplication.bean.Student
 import com.marcinmoskala.activitystarter.argExtra
 import kotlinx.android.synthetic.main.activity_drawer.*
@@ -31,8 +33,28 @@ class DrawerActivity : BaseActivity() {
     }
 
     override fun onContentChanged() {
+
         super.onContentChanged()
         drawer_tv.text = "number:${student.number},name:${student.name},grade:${student.grade}"
+
+        val vP2Adapter = VP2Adapter(this, dataSet)
+        /*
+        * orientation分为水平滚动和垂直滚动
+        * */
+        view_pager2.orientation = ViewPager2.ORIENTATION_VERTICAL
+        /*
+        * isUserInputEnabled是否允许滑动
+        * */
+        view_pager2.isUserInputEnabled = true
+        view_pager2.adapter = vP2Adapter
+        /*
+        * 页面选中监听
+        * */
+        view_pager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+            }
+        })
     }
 
     override fun adapterNotchForView(rect: Rect) {
@@ -40,5 +62,9 @@ class DrawerActivity : BaseActivity() {
                 = drawer_layout.layoutParams as FrameLayout.LayoutParams
         drawerLayoutParams.topMargin = rect.bottom
         drawer_layout.layoutParams = drawerLayoutParams
+    }
+
+    companion object {
+        private val dataSet = arrayListOf("Item1", "Item2", "Item3", "Item4")
     }
 }
