@@ -6,3 +6,9 @@
    2) git reset --merge
    3) git pull
    合并代码后导致冲突时使用
+
+3.git合并分支到master分支
+  1) 切换分支到master分支   git checkout master
+  2) 合并操作   git merge 分支名
+  3) 查看合并状态   git status
+  4) 推送到远程分支  git push origin master
