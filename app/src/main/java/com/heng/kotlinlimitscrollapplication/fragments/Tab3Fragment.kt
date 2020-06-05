@@ -12,6 +12,7 @@ import com.heng.kotlinlimitscrollapplication.bean.Student
 import com.heng.kotlinlimitscrollapplication.interfaces.IOnItemClickListener
 import com.heng.kotlinlimitscrollapplication.presenter.GetDataPresenterImpl
 import com.heng.kotlinlimitscrollapplication.presenter.IGetDataPresenter
+import com.heng.kotlinlimitscrollapplication.util.doLog
 import com.heng.kotlinlimitscrollapplication.view.IGetDataView
 import com.heng.kotlinlimitscrollapplication.views.GridItemDecoration
 import kotlinx.android.synthetic.main.fragment_tab3.*
@@ -93,10 +94,12 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
 
     override fun onFragmentResume() {
         super.onFragmentResume()
+        doLog(this.javaClass.simpleName + "override fun onFragmentResume()")
     }
 
     override fun onFragmentPause() {
         super.onFragmentPause()
+        doLog(this.javaClass.simpleName + "override fun onFragmentPause()")
     }
 
     override fun getDataList(dataSet: List<String>) {

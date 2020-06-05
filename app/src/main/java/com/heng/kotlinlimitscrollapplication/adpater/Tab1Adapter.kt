@@ -58,11 +58,11 @@ class Tab1Adapter(private var context: Context?,
             return@setOnTouchListener false
         }
 
-        holder.itemView.center_content_tv.text = listData!![position]
-        holder.itemView.left_icon_iv.background = context?.getDrawable(R.drawable.item)
-        holder.itemView.right_icon_iv.background = context?.getDrawable(R.drawable.add_more)
+        holder.itemView.center_content_tv!!.text = listData!![position]
+        holder.itemView.left_icon_iv!!.background = context?.getDrawable(R.drawable.item)
+        holder.itemView.right_icon_iv!!.background = context?.getDrawable(R.drawable.add_more)
 
-        holder.itemView.right_icon_iv.setOnClickListener { View.OnClickListener {
+        holder.itemView.right_icon_iv!!.setOnClickListener { View.OnClickListener {
             Toast.makeText(context!!,"haahs",Toast.LENGTH_SHORT).show()
             doLog("holder.itemView.right_icon_iv")
         } }

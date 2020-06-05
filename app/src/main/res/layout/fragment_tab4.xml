@@ -4,18 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@android:color/holo_blue_light"
     tools:context=".fragments.Tab4Fragment">
 
-    <com.heng.kotlinlimitscrollapplication.views.ExpandCircleView
-        android:id="@+id/expanded_cv"
+    <FrameLayout
+        android:id="@+id/fl_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible" />
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-    <com.heng.kotlinlimitscrollapplication.views.TestPorterDuffModeView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        />
+        android:layout_height="@dimen/dp_60"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:background="@color/colorAccent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_format"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_format_align_right_black_n"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_insert"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_insert_invitation_black_n"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_pie_chart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_pie_chart_black_n"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.appcompat.widget.LinearLayoutCompat>

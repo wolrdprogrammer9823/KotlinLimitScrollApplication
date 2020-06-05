@@ -11,6 +11,7 @@ import com.heng.kotlinlimitscrollapplication.interfaces.IOnItemClickListener
 import com.heng.kotlinlimitscrollapplication.presenter.GetDataPresenterImpl
 import com.heng.kotlinlimitscrollapplication.presenter.IGetDataPresenter
 import com.heng.kotlinlimitscrollapplication.util.DataSetUtil
+import com.heng.kotlinlimitscrollapplication.util.doLog
 import com.heng.kotlinlimitscrollapplication.view.IGetDataView
 import com.heng.kotlinlimitscrollapplication.views.GridItemDecoration
 import kotlinx.android.synthetic.main.fragment_tab2.*
@@ -64,10 +65,16 @@ class Tab2Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
 
     override fun onFragmentResume() {
         super.onFragmentResume()
+        doLog(this.javaClass.simpleName + "override fun onFragmentResume()")
+        val mIsEmpty = rvAdapter?.listData?.isEmpty()
+        if (mIsEmpty!!) {
+            getDataPresenter?.fetchData()
+        }
     }
 
     override fun onFragmentPause() {
         super.onFragmentPause()
+        doLog(this.javaClass.simpleName + "override fun onFragmentPause()")
     }
 
     override fun getDataList(dataSet: List<String>) {

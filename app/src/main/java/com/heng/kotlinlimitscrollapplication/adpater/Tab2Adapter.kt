@@ -15,7 +15,7 @@ class Tab2Adapter( private var context : Context?,
                    onItemClickListener:IOnItemClickListener<String>)
                  : BaseRecyclerViewAdapter<String,Tab2Adapter.Tab2Holder>(onItemClickListener) {
 
-    private var listData : List<String>? = null
+    public var listData : List<String>? = null
     private val random = Random.asJavaRandom()
 
     private val colors = arrayOf(android.R.color.holo_blue_light,

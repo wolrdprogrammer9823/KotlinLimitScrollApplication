@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import com.heng.kotlinlimitscrollapplication.R
+import kotlinx.android.synthetic.main.define_dialog_layout.*
 
 class DefineDialog : AlertDialog {
 
@@ -22,6 +23,13 @@ class DefineDialog : AlertDialog {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.define_dialog_layout)
+        btn_sure.setOnClickListener {
+            this.dismiss()
+        }
+
+        btn_cancel.setOnClickListener {
+            this.dismiss()
+        }
     }
 
     override fun show() {
