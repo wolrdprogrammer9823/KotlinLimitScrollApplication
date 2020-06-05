@@ -1,23 +1,17 @@
 package com.heng.kotlinlimitscrollapplication.fragments
 import activitystarter.ActivityStarter
-import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.heng.kotlinlimitscrollapplication.DrawerActivityStarter
 import com.heng.kotlinlimitscrollapplication.R
-import com.heng.kotlinlimitscrollapplication.TestAopActivity
 import com.heng.kotlinlimitscrollapplication.TestAopActivityStarter
 import com.heng.kotlinlimitscrollapplication.adpater.Tab3Adapter
 import com.heng.kotlinlimitscrollapplication.bean.Student
 import com.heng.kotlinlimitscrollapplication.interfaces.IOnItemClickListener
 import com.heng.kotlinlimitscrollapplication.presenter.GetDataPresenterImpl
 import com.heng.kotlinlimitscrollapplication.presenter.IGetDataPresenter
-import com.heng.kotlinlimitscrollapplication.util.doLog
 import com.heng.kotlinlimitscrollapplication.view.IGetDataView
 import com.heng.kotlinlimitscrollapplication.views.GridItemDecoration
 import kotlinx.android.synthetic.main.fragment_tab3.*
@@ -94,6 +88,7 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
         // 业务场景:登录验证和单次点击
 
         //ViewPager2  DialogFragment
+        //kotlin协程   view model + lifecycle
     }
 
     override fun onFragmentResume() {
@@ -128,13 +123,13 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
             }
 
             2->{
-
                 DrawerActivityStarter.start(requireActivity(), student)
             }
 
-            2->{
-
-
+            3->{
+                childFragmentManager.let {
+                    Tab3DialogFragment().show(it,"fragmentManager")
+                }
             }
         }
     }
