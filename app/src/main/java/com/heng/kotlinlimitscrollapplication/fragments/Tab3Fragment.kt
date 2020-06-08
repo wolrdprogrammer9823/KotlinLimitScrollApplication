@@ -89,7 +89,7 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
         // 业务场景:登录验证和单次点击
 
         //ViewPager2  DialogFragment
-        //kotlin协程   view model + lifecycle
+        //kotlin协程   view model + lifecycle   rxjava + dagger + retrofit
     }
 
     override fun onFragmentResume() {
