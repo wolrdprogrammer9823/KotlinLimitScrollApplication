@@ -4,8 +4,10 @@ import com.heng.kotlinlimitscrollapplication.R
 import com.heng.kotlinlimitscrollapplication.fragments.BaseLazyLoadFragment
 
 class ChildThreeFragment private constructor() : BaseLazyLoadFragment() {
+
     private var mParam1: String? = null
     private var mParam2: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments.let {

@@ -94,12 +94,12 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
 
     override fun onFragmentResume() {
         super.onFragmentResume()
-        doLog(this.javaClass.simpleName + "override fun onFragmentResume()")
+        doLog(this.javaClass.simpleName + "->override fun onFragmentResume()")
     }
 
     override fun onFragmentPause() {
         super.onFragmentPause()
-        doLog(this.javaClass.simpleName + "override fun onFragmentPause()")
+        doLog(this.javaClass.simpleName + "->override fun onFragmentPause()")
     }
 
     override fun getDataList(dataSet: List<String>) {

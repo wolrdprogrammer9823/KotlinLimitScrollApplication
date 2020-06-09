@@ -65,16 +65,13 @@ class Tab2Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
 
     override fun onFragmentResume() {
         super.onFragmentResume()
-        doLog(this.javaClass.simpleName + "override fun onFragmentResume()")
-        val mIsEmpty = rvAdapter?.listData?.isEmpty()
-        if (mIsEmpty!!) {
-            getDataPresenter?.fetchData()
-        }
+        doLog(this.javaClass.simpleName + "->override fun onFragmentResume()")
+        getDataPresenter?.fetchData()
     }
 
     override fun onFragmentPause() {
         super.onFragmentPause()
-        doLog(this.javaClass.simpleName + "override fun onFragmentPause()")
+        doLog(this.javaClass.simpleName + "->override fun onFragmentPause()")
     }
 
     override fun getDataList(dataSet: List<String>) {

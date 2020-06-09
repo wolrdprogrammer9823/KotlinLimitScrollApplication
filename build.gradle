@@ -1,32 +1,79 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-buildscript {
-    ext.kotlin_version = '1.3.71'
-    repositories {
-        google()
-        jcenter()
-        maven { url "https://jitpack.io" }
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.3'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+ext {
 
-        //aspectj相关的插件
-        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.10'
-        //classpath 'org.aspectj:aspectjtools:1.8.9'
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+    kotlinVersion = '1.3.71'
+    kotlinxCoroutinesVersion = '1.3.0'
+
+    minSdkVersion = 21
+    compileSdkVersion = 29
+    targetSdkVersion = 29
+
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
+
+    activityStarterVersion = "1.10-beta"
+
+    navigationVersion = "2.2.2"
+}
+
+subprojects { project->
+
+    //group = GROUP
+    //version = VERSION_NAME
+
+    buildscript {
+
+        repositories {
+            google()
+            jcenter()
+            maven { url "https://jitpack.io" }
+        }
+
+        dependencies {
+            classpath 'com.android.tools.build:gradle:3.6.3'
+            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+
+            //aspectj相关的插件
+            classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.10'
+            //classpath 'org.aspectj:aspectjtools:1.8.9'
+            // NOTE: Do not place your application dependencies here; they belong
+            // in the individual module build.gradle files
+        }
+    }
+
+    allprojects {
+        repositories {
+            google()
+            jcenter()
+            maven { url "https://jitpack.io" }
+        }
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-        maven { url "https://jitpack.io" }
-    }
-}
+ext.deps = [
+   kotlinxCoroutinesCore    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutinesVersion",
+   kotlinxCoroutinesAndroid : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinxCoroutinesVersion",
+   kotlinStdlibJdk7         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+   kotlinReflect            : "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion",
+   appcompat                : 'androidx.appcompat:appcompat:1.1.0',
+   coreKtx                  : 'androidx.core:core-ktx:1.3.0',
+   material                 : 'com.google.android.material:material:1.1.0',
+   constraintlayout         : 'androidx.constraintlayout:constraintlayout:1.1.3',
+   legacySupportV4          : 'androidx.legacy:legacy-support-v4:1.0.0',
+   junit                    : 'junit:junit:4.12',
+   extJunit                 : 'androidx.test.ext:junit:1.1.1',
+   espressoCore             : 'androidx.test.espresso:espresso-core:3.2.0',
+   notchScreenTool          : 'com.github.smarxpan:NotchScreenTool:0.0.1',
+   bgaBaseadapter           : 'cn.bingoogolapple:bga-baseadapter:2.0.0@aar',
+   aspectjrt                : 'org.aspectj:aspectjrt:1.9.5',
+   activityStarter          : "com.marcinmoskala.activitystarter:activitystarter:$activityStarterVersion",
+   activityStarterKotlin    : "com.marcinmoskala.activitystarter:activitystarter-kotlin:$activityStarterVersion",
+   activityStarterCompiler  : "com.marcinmoskala.activitystarter:activitystarter-compiler:$activityStarterVersion",
+   navigationUi             : "androidx.navigation:navigation-ui:$navigationVersion",
+   navigationUiKtx          : "androidx.navigation:navigation-ui-ktx:$navigationVersion",
+   navigationFragment       : "androidx.navigation:navigation-fragment:$navigationVersion",
+   navigationFragmentKtx    : "androidx.navigation:navigation-fragment-ktx:$navigationVersion",
+   lifecycleExtensions      : "androidx.lifecycle:lifecycle-extensions:2.2.0",
+]
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}

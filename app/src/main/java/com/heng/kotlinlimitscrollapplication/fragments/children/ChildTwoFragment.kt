@@ -4,8 +4,10 @@ import com.heng.kotlinlimitscrollapplication.R
 import com.heng.kotlinlimitscrollapplication.fragments.BaseLazyLoadFragment
 
 class ChildTwoFragment private constructor() : BaseLazyLoadFragment() {
+
     private var mParam1: String? = null
     private var mParam2: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments.let {
@@ -14,9 +16,8 @@ class ChildTwoFragment private constructor() : BaseLazyLoadFragment() {
         }
     }
 
-    override fun getLayoutRes(): Int = R.layout.fragment_child_two
-
     companion object {
+
         private const val ARG_PARAM1 = "param1"
         private const val ARG_PARAM2 = "param2"
         @JvmStatic
@@ -29,4 +30,6 @@ class ChildTwoFragment private constructor() : BaseLazyLoadFragment() {
             return fragment
         }
     }
+
+    override fun getLayoutRes(): Int = R.layout.fragment_child_two
 }
