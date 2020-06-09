@@ -25,6 +25,9 @@ class Tab1Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
 
     private var param1: String? = null
     private var param2: String? = null
+
+    private var dataInit = false
+
     private var mContext : Context? = null
     private var rvAdapter: Tab1Adapter? = null
     private var getDataPresenter: IGetDataPresenter? = null
@@ -56,22 +59,18 @@ class Tab1Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
     override fun getLayoutRes(): Int = R.layout.fragment_tab1
 
     override fun onFragmentFirstVisible() {
-
         super.onFragmentFirstVisible()
-        val layoutManager = LinearLayoutManager(requireContext())
-        rvAdapter = Tab1Adapter(requireContext(), this)
-        tab1_rv.layoutManager = layoutManager
-        val itemDecoration = DefineItemDecoration(0xff6200EE.toInt(), DefineItemDecoration.VERTICAL)
-        tab1_rv.addItemDecoration(itemDecoration)
-        tab1_rv.adapter = rvAdapter
-
-        getDataPresenter = GetDataPresenterImpl(this, "data")
-        getDataPresenter?.fetchData()
+        initData()
+        dataInit = true
     }
 
     override fun onFragmentResume() {
         super.onFragmentResume()
         doLog(this.javaClass.simpleName + "->override fun onFragmentResume()")
+        if (!dataInit) {
+            initData()
+            dataInit = true
+        }
     }
 
     override fun onFragmentPause() {
@@ -100,5 +99,18 @@ class Tab1Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
         //val mainActivity = mContext as MainActivity
         //mainActivity.setNavigationBarBgColor(android.R.color.white)
         //rvAdapter!!.notifyDataSetChanged()
+    }
+
+    /*初始化数据*/
+    private fun initData() {
+        val layoutManager = LinearLayoutManager(requireContext())
+        rvAdapter = Tab1Adapter(requireContext(), this)
+        tab1_rv.layoutManager = layoutManager
+        val itemDecoration = DefineItemDecoration(0xff6200EE.toInt(), DefineItemDecoration.VERTICAL)
+        tab1_rv.addItemDecoration(itemDecoration)
+        tab1_rv.adapter = rvAdapter
+
+        getDataPresenter = GetDataPresenterImpl(this, "data")
+        getDataPresenter?.fetchData()
     }
 }

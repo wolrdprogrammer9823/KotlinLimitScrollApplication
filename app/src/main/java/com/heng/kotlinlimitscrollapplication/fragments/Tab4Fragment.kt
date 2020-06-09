@@ -13,6 +13,10 @@ import kotlinx.android.synthetic.main.fragment_tab4.*
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
+private const val CHILD_TAB_ONE = "childOneFragment"
+private const val CHILD_TAB_TWO = "childTwoFragment"
+private const val CHILD_TAB_THR = "childThreeFragment"
+
 class Tab4Fragment : BaseLazyLoadFragment(), View.OnClickListener {
 
     companion object {
@@ -38,15 +42,17 @@ class Tab4Fragment : BaseLazyLoadFragment(), View.OnClickListener {
 
     override fun onFragmentFirstVisible() {
         super.onFragmentFirstVisible()
-        iv_format?.setOnClickListener(this)
-        iv_insert?.setOnClickListener(this)
-        iv_pie_chart?.setOnClickListener(this)
-        showFragment(0)
+        initData()
+        dataInit = true
     }
 
     override fun onFragmentResume() {
         super.onFragmentResume()
         doLog(this.javaClass.simpleName + "->override fun onFragmentResume()")
+        if (!dataInit) {
+            initData()
+            dataInit = true
+        }
     }
 
     override fun onFragmentPause() {
@@ -87,7 +93,7 @@ class Tab4Fragment : BaseLazyLoadFragment(), View.OnClickListener {
         when (index) {
             0 -> {
                 if (childOneFragment == null) {
-                    childOneFragment = ChildOneFragment.newInstance("childOneFragment", "childOneFragment")
+                    childOneFragment = ChildOneFragment.newInstance(CHILD_TAB_ONE, CHILD_TAB_ONE)
                     transaction.add(R.id.fl_container, childOneFragment!!)
                 } else {
                     transaction.show(childOneFragment!!)
@@ -95,7 +101,7 @@ class Tab4Fragment : BaseLazyLoadFragment(), View.OnClickListener {
             }
             1 -> {
                 if (childTwoFragment == null) {
-                    childTwoFragment = ChildTwoFragment.newInstance("childTwoFragment", "childTwoFragment")
+                    childTwoFragment = ChildTwoFragment.newInstance(CHILD_TAB_TWO, CHILD_TAB_TWO)
                     transaction.add(R.id.fl_container, childTwoFragment!!)
                 } else {
                     transaction.show(childTwoFragment!!)
@@ -103,15 +109,13 @@ class Tab4Fragment : BaseLazyLoadFragment(), View.OnClickListener {
             }
             2 -> {
                 if (childThreeFragment == null) {
-                    childThreeFragment = ChildThreeFragment.newInstance("childThreeFragment", "childThreeFragment")
+                    childThreeFragment = ChildThreeFragment.newInstance(CHILD_TAB_THR, CHILD_TAB_THR)
                     transaction.add(R.id.fl_container, childThreeFragment!!)
                 } else {
                     transaction.show(childThreeFragment!!)
                 }
             }
-            else -> {
-
-            }
+            else -> {}
         }
         transaction.commit()
     }
@@ -147,8 +151,18 @@ class Tab4Fragment : BaseLazyLoadFragment(), View.OnClickListener {
         }
     }
 
+    /*初始化数据*/
+    private fun initData() {
+        iv_format?.setOnClickListener(this)
+        iv_insert?.setOnClickListener(this)
+        iv_pie_chart?.setOnClickListener(this)
+        showFragment(0)
+    }
+
     private var param1: String? = null
     private var param2: String? = null
+
+    private var dataInit = false
 
     private var childOneFragment: ChildOneFragment? = null
     private var childTwoFragment: ChildTwoFragment? = null

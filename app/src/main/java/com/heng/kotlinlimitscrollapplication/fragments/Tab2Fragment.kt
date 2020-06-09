@@ -24,6 +24,8 @@ class Tab2Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
     private var param1: String? = null
     private var param2: String? = null
 
+    private var dataInit = false
+
     private var rvAdapter: Tab2Adapter? = null
     private var getDataPresenter: IGetDataPresenter? = null
 
@@ -50,7 +52,11 @@ class Tab2Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
 
     override fun onFragmentFirstVisible() {
         super.onFragmentFirstVisible()
+        initData()
+        dataInit = true
+    }
 
+    private fun initData() {
         val space = 5
         val column = 3
         val layoutManager = GridLayoutManager(requireContext(), column)
@@ -66,7 +72,10 @@ class Tab2Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
     override fun onFragmentResume() {
         super.onFragmentResume()
         doLog(this.javaClass.simpleName + "->override fun onFragmentResume()")
-        getDataPresenter?.fetchData()
+        if (!dataInit) {
+            initData()
+            dataInit = true
+        }
     }
 
     override fun onFragmentPause() {

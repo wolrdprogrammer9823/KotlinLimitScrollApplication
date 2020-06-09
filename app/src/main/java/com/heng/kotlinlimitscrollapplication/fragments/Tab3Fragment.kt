@@ -25,6 +25,8 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
     private var param1: String? = null
     private var param2: String? = null
 
+    private var dataInit = false
+
     private var rvAdapter: Tab3Adapter? = null
     private var getDataPresenter: IGetDataPresenter? = null
 
@@ -62,19 +64,8 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
     override fun onFragmentFirstVisible() {
 
         super.onFragmentFirstVisible()
-        val space = 10
-        val column = 3
-        val layoutManager = StaggeredGridLayoutManager(column, StaggeredGridLayoutManager.VERTICAL)
-        /*解决item跳动问题*/
-        layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
-        tab3_rv.layoutManager = layoutManager
-        rvAdapter = Tab3Adapter(requireContext(), this)
-        tab3_rv.addItemDecoration(GridItemDecoration(space, column))
-        tab3_rv.addOnScrollListener(RvScrollListener(layoutManager))
-        tab3_rv.adapter = rvAdapter
-
-        getDataPresenter = GetDataPresenterImpl(this, "StaggeredGrid")
-        getDataPresenter?.fetchData()
+        initData()
+        dataInit = true
         //1.懒加载fragment  2.mvp模式  3.公共的事件监听   4.不居中显示问题
         //1.实配水滴屏   2.修改分割线颜色
         // 3.弹对话框删除item  4.添加icon和文本  5.涂鸦页面添加  6.极限回弹
@@ -92,9 +83,14 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
         //kotlin协程   view model + lifecycle   rxjava + dagger + retrofit
     }
 
+
     override fun onFragmentResume() {
         super.onFragmentResume()
         doLog(this.javaClass.simpleName + "->override fun onFragmentResume()")
+        if (!dataInit) {
+            initData()
+            dataInit = true
+        }
     }
 
     override fun onFragmentPause() {
@@ -145,6 +141,23 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
             /*防止第一行有空白*/
             layoutManager?.invalidateSpanAssignments()
         }
+    }
+
+    /*初始化数据*/
+    private fun initData() {
+        val space = 10
+        val column = 3
+        val layoutManager = StaggeredGridLayoutManager(column, StaggeredGridLayoutManager.VERTICAL)
+        /*解决item跳动问题*/
+        layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
+        tab3_rv.layoutManager = layoutManager
+        rvAdapter = Tab3Adapter(requireContext(), this)
+        tab3_rv.addItemDecoration(GridItemDecoration(space, column))
+        tab3_rv.addOnScrollListener(RvScrollListener(layoutManager))
+        tab3_rv.adapter = rvAdapter
+
+        getDataPresenter = GetDataPresenterImpl(this, "StaggeredGrid")
+        getDataPresenter?.fetchData()
     }
 
 }
