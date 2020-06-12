@@ -81,6 +81,8 @@ class Tab3Fragment : BaseLazyLoadFragment(), IOnItemClickListener<String>, IGetD
 
         //ViewPager2  DialogFragment
         //kotlin协程   view model + lifecycle   rxjava + dagger + retrofit
+        //TextureView播放视频  IJKPlayer播放视频
+        //组件化 mvp泛型
     }
 
 
